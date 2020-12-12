@@ -3,11 +3,16 @@ var submitInput = document.querySelector("#submitButton").addEventListener("clic
     genPW();
 } , true)
 
+var copy = document.querySelector("#jp2").addEventListener("click", function() {
+    event.preventDefault();
+    copyToClipboard();
+} , true)
+
 function changeHTML() {
     var jh1 = document.querySelector("#jh1");
     var jp1 = document.querySelector("#jp1");
     var jp2 = document.querySelector("#jp2");
-    jp1.textContent = "Your Password has been generated below.";
+    jp1.textContent = "Your Password has been generated below. You may click the password to copy to clipboard";
 }
 
 function genPW() {
@@ -51,7 +56,20 @@ function genPW() {
     var givePW = document.querySelector("#jp2");
     if (givePW) {
         givePW.textContent = generatedPW;
+        $("#jp2").addClass("pw");
     }
     changeHTML();
 
 }
+
+function copyToClipboard() {
+    var pw = $("#jp2");
+    console.log(pw.text());
+    if (pw.text()) {
+        var $tmp = $("<input>");
+        $("body").append($tmp);
+        $tmp.val($(pw).text()).select();
+        document.execCommand("copy");
+        $tmp.remove();
+    }
+  }

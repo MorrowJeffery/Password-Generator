@@ -1,3 +1,7 @@
 #inputContentBox {
     padding: 20px;
 }
+
+.pw:hover {
+    color: blue;
+}
